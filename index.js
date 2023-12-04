@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const mariadbConn = require('./mariaDBConn.js')
 const app = express()
 const port = 3000
 
@@ -26,6 +27,12 @@ app.get('/sound/:name', (req, res) => {
     }
 
     
+})
+
+mariadbConn.getuserList().then((rows) => {
+    console.log(rows);
+}).catch((errMsg) => {
+    console.log(errMsg);
 })
 
 app.listen(port, () => {
